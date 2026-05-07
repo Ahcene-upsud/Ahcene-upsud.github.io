@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahcene DAHOUMANE — Consultant BI & Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #18181f;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.13);
+      --accent: #7c6dfa;
+      --accent2: #a48dff;
+      --gold: #d4a853;
+      --text: #e8e8f0;
+      --muted: #888899;
+      --dim: #555566;
+      --teal: #2dd4bf;
+      --fd: 'DM Serif Display', serif;
+      --fb: 'Outfit', sans-serif;
+      --fm: 'DM Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 60px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,15,0.93);
+      backdrop-filter: blur(14px);
+      z-index: 100;
+    }
+    .nav-logo { font-family: var(--fm); font-size: 13px; color: var(--accent2); letter-spacing: .05em; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #fff; border: none;
+      padding: 9px 20px; border-radius: 7px;
+      font-family: var(--fb); font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: opacity .2s; text-decoration: none;
+      display: inline-block;
+    }
+    .nav-cta:hover { opacity: .82; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 90px 60px 72px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 1000px;
+    }
+    .hero-tag {
+      font-family: var(--fm); font-size: 11px; color: var(--accent2);
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--accent2); display: inline-block; }
+    h1.hname { font-family: var(--fd); font-size: 56px; line-height: 1.08; margin-bottom: 8px; }
+    h1.hname em { color: var(--accent2); font-style: italic; }
+    .hero-title { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 24px; }
+    .hero-desc { font-size: 13.5px; color: var(--muted); line-height: 1.9; max-width: 400px; }
+    .avail-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.25);
+      color: var(--teal); font-size: 12px; font-family: var(--fm);
+      padding: 5px 14px; border-radius: 20px; margin-top: 20px;
+    }
+    .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); }
+    .hero-stats { display: flex; gap: 36px; margin-top: 36px; }
+    .stat-num { font-family: var(--fm); font-size: 28px; font-weight: 500; color: var(--text); }
+    .stat-label { font-size: 12px; color: var(--dim); }
+
+    .hero-card {
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: 16px; padding: 28px;
+    }
+    .hero-card-tag {
+      font-family: var(--fm); font-size: 11px; color: var(--gold);
+      margin-bottom: 18px; display: flex; align-items: center; gap: 7px;
+    }
+    .hero-card-tag::before { content: '▶'; font-size: 8px; }
+    .metric-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .metric-row:last-child { border-bottom: none; }
+    .metric-name { font-size: 13px; color: var(--muted); }
+    .metric-val { font-family: var(--fm); font-size: 13px; font-weight: 500; color: var(--accent2); }
+    .bar-w { width: 88px; height: 3px; background: var(--bg2); border-radius: 2px; margin-top: 5px; }
+    .bar-f { height: 3px; border-radius: 2px; background: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section { padding: 72px 60px; border-bottom: 1px solid var(--border); }
+    .sec-label {
+      font-family: var(--fm); font-size: 11px; color: var(--dim);
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: 30px; display: flex; align-items: center; gap: 14px;
+    }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .sec-title { font-family: var(--fd); font-size: 34px; color: var(--text); margin-bottom: 8px; }
+    .sec-sub { font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+
+    /* ── PROJECTS ── */
+    .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .proj-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 26px;
+      transition: border-color .25s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .proj-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent); opacity: 0; transition: opacity .25s;
+    }
+    .proj-card:hover::before { opacity: 1; }
+    .proj-card.full { grid-column: 1 / -1; }
+    .proj-sector {
+      font-family: var(--fm); font-size: 11px; color: var(--accent2);
+      letter-spacing: .08em; margin-bottom: 11px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .stage-badge {
+      background: rgba(212,168,83,.12); border: 1px solid rgba(212,168,83,.3);
+      color: var(--gold); font-size: 10px; font-family: var(--fm);
+      padding: 2px 9px; border-radius: 10px; letter-spacing: .06em;
+    }
+    .proj-name { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 9px; }
+    .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+    .proj-kpis { display: flex; gap: 10px; flex-wrap: wrap; }
+    .kpi {
+      background: var(--bg3); border: 1px solid var(--border);
+      padding: 5px 12px; border-radius: 7px; font-size: 12px;
+    }
+    .kpi span { font-family: var(--fm); color: var(--gold); font-weight: 500; }
+    .kpi-l { color: var(--muted); }
+
+    /* ── STACK ── */
+    .tech-group { margin-bottom: 32px; }
+    .tg-name {
+      font-size: 12px; color: var(--dim); letter-spacing: .08em;
+      text-transform: uppercase; margin-bottom: 13px; font-weight: 500;
+    }
+    .tech-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tech-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 9px; padding: 8px 15px;
+      font-size: 13px; font-weight: 500; color: var(--text);
+      transition: border-color .2s;
+    }
+    .tech-pill:hover { border-color: var(--border2); }
+    .td { width: 7px; height: 7px; border-radius: 50%; }
+    .dv { background: #7c6dfa; } .db { background: #4a9eff; }
+    .dt { background: #2dd4bf; } .dg { background: #d4a853; }
+    .do { background: #f97316; } .dp { background: #e879f9; }
+    .dr { background: #e85c5c; } .dx { background: #d0e52e; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .contact-intro { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 26px; }
+    .contact-links { display: flex; flex-direction: column; gap: 13px; }
+    .cl {
+      display: flex; align-items: center; gap: 13px;
+      color: var(--muted); text-decoration: none; font-size: 14px;
+      padding: 12px 16px; border: 1px solid var(--border); border-radius: 9px;
+      transition: border-color .2s, color .2s;
+    }
+    .cl:hover { border-color: var(--accent); color: var(--accent2); }
+    .cl-icon { font-family: var(--fm); font-size: 15px; width: 24px; text-align: center; flex-shrink: 0; }
+
+    .form-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+    }
+    .fl {
+      font-size: 11px; color: var(--dim); letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 8px; display: block;
+    }
+    .fi {
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 9px; padding: 11px 14px; color: var(--text);
+      font-family: var(--fb); font-size: 14px; outline: none;
+      transition: border-color .2s; margin-bottom: 16px;
+    }
+    .fi:focus { border-color: var(--accent); }
+    .fi::placeholder { color: var(--dim); }
+    textarea.fi { resize: vertical; height: 110px; }
+    .fb-btn {
+      width: 100%; background: var(--accent); border: none;
+      border-radius: 9px; padding: 13px; color: #fff;
+      font-family: var(--fb); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: opacity .2s; margin-top: 4px;
+    }
+    .fb-btn:hover { opacity: .84; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 28px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .ft { font-size: 12px; color: var(--dim); font-family: var(--fm); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-grid  { animation: fadein .55s ease both; }
+    .proj-grid  { animation: fadein .55s ease .1s both; }
+    .tech-group { animation: fadein .55s ease .15s both; }
+    .contact-grid { animation: fadein .55s ease .1s both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 56px 24px 48px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      h1.hname { font-size: 40px; }
+      section { padding: 48px 24px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .proj-card.full { grid-column: 1; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">// ahcene.dahoumane</div>
+  <ul class="nav-links">
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="CV_Ahcened.pdf" download>Télécharger CV</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Master MIAGE · Informatique Décisionnelle</div>
+      <h1 class="hname">Ahcene DAHOUMANE</h1>
+      <p class="hero-title">Consultant BI &amp; Analytics · Data Quality · Décisionnel</p>
+      <p class="hero-desc">Diplômé Paris-Saclay, je maîtrise le cycle complet de la donnée — de l'analyse des besoins métiers à la restitution décisionnelle. Habitué à collaborer avec équipes métiers et IT pour produire des analyses à forte valeur ajoutée.</p>
+      <div class="avail-badge"><span class="avail-dot"></span>Disponible immédiatement</div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">2 ans</div>
+          <div class="stat-label">alternance SI/Data</div>
+        </div>
+        <div>
+          <div class="stat-num">Bac+5</div>
+          <div class="stat-label">Paris-Saclay</div>
+        </div>
+        <div>
+          <div class="stat-num">3 lang.</div>
+          <div class="stat-label">FR · EN · AR</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-tag">Résultats · Movivolt (2023–2025)</div>
+      <div class="metric-row">
+        <div><div class="metric-name">Volume des ventes</div><div class="bar-w"><div class="bar-f" style="width:80%"></div></div></div>
+        <div class="metric-val">Augmenté</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Livraison véhicules</div><div class="bar-w"><div class="bar-f" style="width:70%"></div></div></div>
+        <div class="metric-val">Simplifié</div>
+      </div>
+      <div class="metric-row">
+        <div><div class="metric-name">Facturation clients</div><div class="bar-w"><div class="bar-f" style="width:90%"></div></div></div>
+        <div class="metric-val">Sécurisé</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="sec-label">01 — Études de cas</div>
+  <h2 class="sec-title">Projets &amp; réalisations</h2>
+  <p class="sec-sub">Missions menées en alternance chez Movivolt et en stage chez IP Technologies</p>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-sector">BI · Power BI · Oracle SQL</div>
+      <div class="proj-name">Tableaux de bord décisionnels</div>
+      <div class="proj-desc">Recueil des besoins métiers, modélisation des données sur Oracle SQL Developer et création de dashboards Power BI (DAX). Formation des utilisateurs finaux à la prise en main des rapports.</div>
+      <div class="proj-kpis">
+        <div class="kpi"><span>DAX</span><span class="kpi-l"> + Dashboards</span></div>
+        <div class="kpi"><span>Formation</span><span class="kpi-l"> utilisateurs</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-sector">Dev · Python · API INSEE</div>
+      <div class="proj-name">Application de mise à jour CRM</div>
+      <div class="proj-desc">Développement d'une application Python qui synchronise automatiquement la base clients via l'API INSEE. Sécurisation et fiabilisation de la facturation et des données clients.</div>
+      <div class="proj-kpis">
+        <div class="kpi"><span>Python</span><span class="kpi-l"> Pandas</span></div>
+        <div class="kpi"><span>API</span><span class="kpi-l"> INSEE</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-sector">ERP · SQL Server · Locpro</div>
+      <div class="proj-name">Paramétrage ERP &amp; documentation</div>
+      <div class="proj-desc">Paramétrage des modules commandes, contrats et véhicules de l'ERP Locpro sous SQL Server. Rédaction des procédures complètes de création, modification et suppression.</div>
+      <div class="proj-kpis">
+        <div class="kpi"><span>SQL Server</span></div>
+        <div class="kpi"><span>Documentation</span><span class="kpi-l"> complète</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-sector">QA · Python · Selenium</div>
+      <div class="proj-name">Automatisation des tests</div>
+      <div class="proj-desc">Développement de classes Python pour enregistrer et simuler des actions utilisateur via Selenium WebDriver. Validation automatisée des résultats d'affichage sur les interfaces métiers.</div>
+      <div class="proj-kpis">
+        <div class="kpi"><span>Selenium</span></div>
+        <div class="kpi"><span>Tests</span><span class="kpi-l"> automatisés</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card full">
+      <div class="proj-sector">
+        Réseau · VoIP · Support N3
+        <span class="stage-badge">Stage · Alger, juil–août 2022</span>
+      </div>
+      <div class="proj-name">Ingénieur réseau — IP Technologies</div>
+      <div class="proj-desc">Consultation clients pour évaluation des besoins en solutions réseau voix &amp; data. Installation et configuration d'équipements réseau et téléphoniques (switches, routeurs, PABX, solutions Alcatel-Lucent OmniPCX / OmniSwitch) en environnements de production. Support technique niveau 3 : diagnostic et résolution d'incidents complexes sur infrastructures réseau et téléphoniques. Conseil aux utilisateurs et services internes sur les choix techniques, bonnes pratiques LAN, VoIP et téléphonie d'entreprise.</div>
+      <div class="proj-kpis">
+        <div class="kpi"><span>Alcatel-Lucent</span><span class="kpi-l"> OmniPCX</span></div>
+        <div class="kpi"><span>VoIP</span><span class="kpi-l"> LAN</span></div>
+        <div class="kpi"><span>Support</span><span class="kpi-l"> N3</span></div>
+        <div class="kpi"><span>PABX</span></div>
+        <div class="kpi"><span>Switches</span><span class="kpi-l"> / Routeurs</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="sec-label">02 — Stack technique</div>
+  <h2 class="sec-title">Outils &amp; technologies</h2>
+  <p class="sec-sub">Mon écosystème BI, data et dev</p>
+
+  <div class="tech-group">
+    <div class="tg-name">BI &amp; Visualisation</div>
+    <div class="tech-pills">
+      <div class="tech-pill"><span class="td dv"></span>Power BI</div>
+      <div class="tech-pill"><span class="td db"></span>Tableau Software</div>
+      <div class="tech-pill"><span class="td dt"></span>Looker Studio</div>
+      <div class="tech-pill"><span class="td dg"></span>Excel / Power Query / VBA</div>
+    </div>
+  </div>
+
+  <div class="tech-group">
+    <div class="tg-name">Données &amp; ETL</div>
+    <div class="tech-pills">
+      <div class="tech-pill"><span class="td db"></span>SQL (Oracle, SQL Server)</div>
+      <div class="tech-pill"><span class="td dv"></span>Talend Open Studio</div>
+      <div class="tech-pill"><span class="td dt"></span>Oracle SQL Developer</div>
+      <div class="tech-pill"><span class="td dg"></span>Gestion des flux SI</div>
+    </div>
+  </div>
+
+  <div class="tech-group">
+    <div class="tg-name">Programmation</div>
+    <div class="tech-pills">
+      <div class="tech-pill"><span class="td do"></span>Python (Pandas, Streamlit)</div>
+      <div class="tech-pill"><span class="td dp"></span>Selenium</div>
+      <div class="tech-pill"><span class="td dr"></span>Java</div>
+      <div class="tech-pill"><span class="td dg"></span>API Rest</div>
+      <div class="tech-pill"><span class="td db"></span>Docker</div>
+      <div class="tech-pill"><span class="td dt"></span>Github</div>
+      <div class="tech-pill"><span class="td dx"></span>Linux</div>
+      <div class="tech-pill"><span class="td dv"></span>PowerShell</div>
+    </div>
+  </div>
+
+  <div class="tech-group">
+    <div class="tg-name">Réseau &amp; Infrastructure</div>
+    <div class="tech-pills">
+      <div class="tech-pill"><span class="td dt"></span>LAN / VoIP</div>
+      <div class="tech-pill"><span class="td dg"></span>PABX / OmniPCX</div>
+      <div class="tech-pill"><span class="td dv"></span>Switches / Routeurs</div>
+      <div class="tech-pill"><span class="td dr"></span>Support N3</div>
+    </div>
+  </div>
+
+  <div class="tech-group">
+    <div class="tg-name">Méthodes &amp; Gouvernance</div>
+    <div class="tech-pills">
+      <div class="tech-pill"><span class="td dv"></span>Scrum / Kanban</div>
+      <div class="tech-pill"><span class="td dt"></span>RGPD</div>
+      <div class="tech-pill"><span class="td dg"></span>Paramétrage CRM(HubSpot)</div>
+      <div class="tech-pill"><span class="td db"></span>Paramétrage &amp; gestion projets ERP </div>
+      <div class="tech-pill"><span class="td db"></span>Ateliers métiers</div>
+      <div class="tech-pill"><span class="td do"></span>Recette &amp; MEP</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-label">03 — Contact</div>
+  <h2 class="sec-title">Travaillons ensemble</h2>
+  <p class="sec-sub">Disponible immédiatement, sans contrainte administrative</p>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-intro">Vous cherchez un profil BI junior avec une vraie expérience terrain ? Je suis disponible pour des missions en régie, freelance ou CDI. Réponse sous 24h.</p>
+      <div class="contact-links">
+        <a class="cl" href="https://www.linkedin.com/in/ahcene-d" target="_blank" rel="noopener">
+          <span class="cl-icon">in</span><span>Ahcene D · LinkedIn</span>
+        </a>
+        <a class="cl" href="mailto:ahcene.dahomane@gmail.com">
+          <span class="cl-icon">@</span><span>ahcene.dahomane@gmail.com</span>
+        </a>
+        <a class="cl" href="https://github.com/Ahcene-upsud" target="_blank" rel="noopener">
+          <span class="cl-icon">&lt;/&gt;</span><span>Ahcene-upsud · GitHub</span>
+        </a>
+        <a class="cl" href="tel:+33659490445">
+          <span class="cl-icon">☏</span><span>06 59 49 04 45</span>
+        </a>
+      </div>
+    </div>
+    <div class="form-card">
+      <label class="fl">Nom</label>
+      <input class="fi" type="text" placeholder="Votre nom" />
+      <label class="fl">Email</label>
+      <input class="fi" type="email" placeholder="votre@email.com" />
+      <label class="fl">Message</label>
+      <textarea class="fi" placeholder="Décrivez votre besoin ou opportunité..."></textarea>
+      <button class="fb-btn" onclick="handleContact()">Envoyer le message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">© 2025 Ahcene Dahoumane · Consultant BI &amp; Analytics</div>
+  <div class="ft">Paris-Saclay · Disponible immédiatement</div>
+</footer>
+
+<script>
+  function handleContact() {
+    const btn = document.querySelector('.fb-btn');
+    btn.textContent = 'Message envoyé ✓';
+    btn.style.background = '#2dd4bf';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Envoyer le message →';
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

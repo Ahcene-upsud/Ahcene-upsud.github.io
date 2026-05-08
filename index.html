@@ -479,16 +479,26 @@
 </footer>
 
 <script>
-  function handleContact() {
+  async function handleContact() {
     const btn = document.querySelector('.fb-btn');
-    btn.textContent = 'Message envoyé ✓';
+    const data = {
+      name: document.querySelector('.fi').value[0],
+      email: document.querySelector('.fi').value[1],
+      message: document.querySelector('textarea').value
+    };
+    btn.textContent = 'Envoi en cours ...';
     btn.style.background = '#2dd4bf';
     btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Envoyer le message →';
-      btn.style.background = '';
-      btn.disabled = false;
-    }, 3000);
+    await fetch ('https://formspree.io/f/xnjwbgqo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    
+    btn.textContent = 'Message envoyé ✓';
+    btn.style.background = '';
+    btn.disabled = false;
+    
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {

@@ -482,14 +482,14 @@
   async function handleContact() {
     const btn = document.querySelector('.fb-btn');
     const data = {
-      name: document.querySelector('.fi').value[0],
-      email: document.querySelector('.fi').value[1],
+      name: document.querySelectorAll('.fi')[0].value,
+      email: document.querySelectorAll('.fi')[1].value,
       message: document.querySelector('textarea').value
     };
     btn.textContent = 'Envoi en cours ...';
     btn.style.background = '#2dd4bf';
     btn.disabled = true;
-    await fetch ('https://formspree.io/f/xnjwbgqo', {
+    await fetch ('https://2ad7f737-6c09-4ed6-9b0d-47f426f7b680.mock.pstmn.io', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

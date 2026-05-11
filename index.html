@@ -483,7 +483,7 @@
     const btn = document.querySelector('.fb-btn');
     const data = {
       name: document.querySelectorAll('.fi')[0].value,
-      //email: document.querySelectorAll('.fi')[1].value,
+      email: document.querySelectorAll('.fi')[1].value,
       message: document.querySelector('textarea').value
     };
     btn.textContent = 'Envoi en cours ...';
@@ -493,7 +493,10 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
-    });
+    })
+    .then(response =>response.json())
+    .then(data => console.log(data))
+    .then(error => console.error(error));
     
     btn.textContent = 'Message envoyé ✓';
     btn.style.background = '';

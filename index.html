@@ -489,7 +489,7 @@
     btn.textContent = 'Envoi en cours ...';
     btn.style.background = '#2dd4bf';
     btn.disabled = true;
-    await fetch ('https://2ad7f737-6c09-4ed6-9b0d-47f426f7b680.mock.pstmn.io', {
+    await fetch ('https://2ad7f737-6c09-4ed6-9b0d-47f426f7b680.mock.pstmn.io/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
